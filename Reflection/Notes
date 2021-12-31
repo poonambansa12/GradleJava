@@ -1,0 +1,16 @@
+They are used to extract class, methods or field names during run time.
+Get lists of names:
+getDeclaredMethods
+getClassName
+getReturnType
+getParameterTypes
+getExceptions
+
+Method invoke:
+Now I have method name. Parameter types
+Method meth = new Method();
+meth.invoke(<className>, arguments);
+
+Change field values:
+Field f = class.getField(<filedname>); // Class<?> c
+Use setInt, setBoolean etc to set primitive type values. Ex: f.setInt(student, 10) // student is the object of the class where field f exists.

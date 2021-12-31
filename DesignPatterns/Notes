@@ -1,0 +1,43 @@
+Singleton: Only one instance of the class is allowed.
+    private Static instance creation, so memory will be assigned only once.
+    Private constructor, so an outside class can't instantiate this class.
+    Static factory method which returns instance of the class. Can have Early or late/lazy instantiation.
+    Lazy instantiation can be done in many ways.
+        1. In the static factory method, instantiate if object is null.
+        2. use a static block to instantiate if object is null.
+        3. use synchronized before method modifier and check if object is null then instantiate.
+        4. For the public static method, check if Object is null and synchronized(<classname>.class) also has null object.
+
+Factory design pattern: Creational design pattern. Object instantiation is encapsulated in the subclasses. Define an interface and let subclasses decide which object to instantiate.
+    Example: Notification interface - SMS, Push or email notification. Create a NotificationFactory class
+OTT platform -> Netflix, Prime, Zee5, Hotstar.
+There ae two types of factories: Factory method which returns the object type and the object is instantiated in subclasses.
+Another is abstract factory. Multiple objects can be created here and they use composition over inheritance for instantiation.
+
+Strategy:
+
+Observer: State change is used to update different usages of the varying component.
+
+Decorator:
+
+Command: When object creation is decoupled from the client who is making the request i.e.
+client doesn't know how the command will be fulfilled. This supports log, queue requests ands undoable operations.
+
+Builder Pattern: Method chaining with Threadsafe and atomic object creation.
+Student.Builder.newInstance().setId(1).setName("ABC").build();
+Where newInstance() returns a new instance of static inner class Builder. After setting values of all the instance variables, call to build()
+creates a new instance of the outer class.
+
+Chain of Responsibility: This is used for Loose coupling in software design. A request is sent from client to chain of objects.
+    Here, the objects decide whether the request will go to the next object in chain or be returned back to the client.
+    A use case can be where the specific object handling the request is not known at the compile time and
+    multiple object can handle the same request.
+Ex. Handler interface. Handler1 and Handler2 classes are implementing HAndler interface's handle() method.
+Chain interface. Processors -> Negative, zero and positive processors. The corresponding processor will process the request based on the
+Number request passed to it.
+
+Template Method: used for creating skeleton of different operations. This is useful where common method calls
+are required with different behaviors.
+
+Decorator: Dynamically add functionality and behavior to an object without affecting the existing objects.
+

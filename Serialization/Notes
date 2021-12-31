@@ -1,0 +1,21 @@
+Serializable: Serialization.Student, Serialization.SerializableOutputStream, Serialization.SerializableInputStream.
+To write stream of output to a file and to read file as an input stream,
+the class should be implementing Serializable interface.
+ObjectOutputStream
+ObjectInputStream
+Data written into a file through the output stream will not be in human readable format.
+But, the same file can be read and set as the object.
+
+Serializable with Inheritance: If a class is Serializable, then all it's subclasses will also be.
+Serializable with Aggregation: If a class has an object of another class, then both the classes should be serializable for
+using the stream.
+Static data members: static members will not be serialized, because they are part of class and not object.
+Transient: In case of Serialization, if we don't want to save original value of a variable to a file, then we can use transient
+modifier for that variable. When this file will be read back into the object, then default value of the variable type will be
+saved in place of the original value.
+
+Externalizable - Serialization.ExternalizableClass, Serialization.Person.
+gives an option to select part of object to be serialized and deserialized.
+transient keywork can't be used here.
+writeExternal() and ReadExternal() abstract methods of Externalizable interface need to be implemented.
+A default constructor of the class (implementing Externalizable interface) needs to be written.
