@@ -5,7 +5,7 @@ import java.util.function.Function;
 /**
  * Details of FunctionalInterface.
  */
-public class FirstClass {
+public class FunctionInterfaceDetails {
 
   /**
    * main method.

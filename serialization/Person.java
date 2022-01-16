@@ -32,4 +32,16 @@ public class Person implements Externalizable {
         phone = in.readInt();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
 }
