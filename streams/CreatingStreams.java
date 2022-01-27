@@ -2,7 +2,6 @@ package streams;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.*;
 
 /**
@@ -40,7 +39,7 @@ public class CreatingStreams {
     //Using generate to create an infinite stream.
     Stream<String> generateStream = Stream.generate(() -> "value").limit(10);
     long generateCount = generateStream.map(element -> {
-      System.out.println(element.toString());
+      System.out.println(element);
       return element.toLowerCase();
     }).filter(x -> x.equals("value")).count();
     System.out.println(generateCount);
@@ -59,6 +58,8 @@ public class CreatingStreams {
 
     LongStream longStream = LongStream.rangeClosed(1, 4);
     System.out.println("Long stream: " + longStream);
+
+    System.out.println(Runtime.getRuntime().availableProcessors());
 
   }
 }
