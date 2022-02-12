@@ -3,8 +3,9 @@ package serialization;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 
-public class SerializableInputStream {
+public class SerializableInputStream implements Serializable {
 
     public static void main(String[] args) {
         try {

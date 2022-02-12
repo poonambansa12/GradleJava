@@ -2,8 +2,9 @@ package serialization;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class SerializableOutputStream {
+public class SerializableOutputStream implements Serializable {
 
     public static void main(String[] args) {
 
