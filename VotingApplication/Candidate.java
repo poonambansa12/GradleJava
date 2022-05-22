@@ -1,9 +1,26 @@
 package VotingApplication;
 
-public class Candidate {
+public class Candidate implements Comparable<Candidate> {
 
   String candidateName;
+  int numberOfRank1;
+  int numberOfRank2;
+  int numberOfRank3;
 
+  public Candidate(String candidateName) {
+    this.candidateName = candidateName;
+    this.numberOfRank1=0;
+    this.numberOfRank2=0;
+    this.numberOfRank3=0;
+  }
+
+  public String getCandidateName() {
+    return candidateName;
+  }
+
+  public void setCandidateName(String candidateName) {
+    this.candidateName = candidateName;
+  }
   public int getNumberOfRank1() {
     return numberOfRank1;
   }
@@ -28,22 +45,21 @@ public class Candidate {
     this.numberOfRank3 = numberOfRank3;
   }
 
-  int numberOfRank1;
-  int numberOfRank2;
-  int numberOfRank3;
-
-  public Candidate(String CandidateName) {
-    this.numberOfRank1=0;
-    this.numberOfRank2=0;
-    this.numberOfRank3=0;
+  @Override
+  public int compareTo(Candidate o) {
+    return (this.candidateName).compareTo(o.getCandidateName());
   }
 
-  public String getCandidateName() {
-    return candidateName;
-  }
+  public int compare(Candidate c1, Candidate c2, int rank) {
+    if (rank == 1) {
+      return c1.numberOfRank1 - c2.numberOfRank1;
+    } else if (rank == 2) {
+      return c1.numberOfRank2 - c2.numberOfRank2;
+    } else if (rank == 3) {
+      return c1.numberOfRank3 - c2.numberOfRank3;
+    }
 
-  public void setCandidateName(String candidateName) {
-    this.candidateName = candidateName;
+    return 0;
   }
 
 }

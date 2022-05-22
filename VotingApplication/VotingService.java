@@ -1,12 +1,12 @@
 package VotingApplication;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class VotingService {
 
   static List<Candidate> candidates = new ArrayList<>();
+  static Map<Integer, List<String>> mapOfTopCandidatesByRank = new HashMap<>();
 
   public static void main(String[] args) {
     Candidate candidate1 = new Candidate("Poonam Bansal");
@@ -17,14 +17,22 @@ public class VotingService {
     candidates.add(candidate2);
     candidates.add(candidate3);
 
-    Vote vote1 = new Vote("Yash", candidate2, candidate3, candidate1);
-    Vote vote2 = new Vote("Shivani", candidate2, candidate1, candidate3);
-    Vote vote3 = new Vote("Subhakar", candidate1, candidate2, candidate3);
+    addVote("Yash", candidate2, candidate3, candidate1);
+    addVote("Shivani", candidate2, candidate1, candidate3);
+    addVote("Subhakar", candidate1, candidate2, candidate3);
 
-    updateRanks(vote1);
-    updateRanks(vote2);
-    updateRanks(vote3);
-    displayRanksByCandidate();
+    displayNumberOfRankOnesByCandidate();
+    displayTopCandidatesByRank(1);
+    displayTopCandidatesByRank(2);
+    displayTopCandidatesByRank(3);
+  }
+
+  public static void addVote(String voterName, Candidate candidate1, Candidate candidate2, Candidate candidate3) {
+    Vote vote = new Vote("Yash", candidate2, candidate3, candidate1);
+    vote.setCandidate1(candidate1.getCandidateName());
+    vote.setCandidate2(candidate2.getCandidateName());
+    vote.setCandidate3(candidate3.getCandidateName());
+    updateRanks(vote);
   }
 
   private static void updateRanks(Vote vote) {
@@ -41,9 +49,66 @@ public class VotingService {
       }});
   }
 
-  public static void displayRanksByCandidate() {
+  public static void displayNumberOfRankOnesByCandidate() {
 
     candidates.forEach(candidate -> System.out.println(candidate.getCandidateName() + " is Ranked1 "
         + candidate.getNumberOfRank1() + " times"));
   }
+
+  public static void displayTopCandidatesByRank(int rank) {
+    List<String> candidatesWithRankOne = new ArrayList<>();
+
+    if(rank == 1) {
+      Candidate candidate = Collections.max(candidates, new Comparator<Candidate>() {
+        @Override
+        public int compare(Candidate c1, Candidate c2) {
+          if (c1.getNumberOfRank1() == c2.getNumberOfRank1()) {
+            return 0;
+          } else if (c1.getNumberOfRank1() > c2.getNumberOfRank1()) {
+            return 1;
+          } else if (c1.getNumberOfRank1() < c2.getNumberOfRank1()) {
+            return -1;
+          }
+          return 0;
+        }
+      });
+      System.out.println("1st Ranked candidate is: " + candidate.getCandidateName());
+
+    } else if (rank == 2) {
+      Candidate candidate = Collections.max(candidates, new Comparator<Candidate>() {
+        @Override
+        public int compare(Candidate c1, Candidate c2) {
+          if (c1.getNumberOfRank2() == c2.getNumberOfRank2()) {
+            return 0;
+          } else if (c1.getNumberOfRank2() > c2.getNumberOfRank2()) {
+            return 1;
+          } else if (c1.getNumberOfRank2() < c2.getNumberOfRank2()) {
+            return -1;
+          }
+          return 0;
+        }
+      });
+      System.out.println("2nd Ranked candidate is: " + candidate.getCandidateName());
+
+    } else if (rank == 3) {
+      Candidate candidate = Collections.max(candidates, new Comparator<Candidate>() {
+        @Override
+        public int compare(Candidate c1, Candidate c2) {
+          if (c1.getNumberOfRank3() == c2.getNumberOfRank3()) {
+            return 0;
+          } else if (c1.getNumberOfRank3() > c2.getNumberOfRank3()) {
+            return 1;
+          } else if (c1.getNumberOfRank3() < c2.getNumberOfRank3()) {
+            return -1;
+          }
+          return 0;
+        }
+      });
+      System.out.println("3rd Ranked candidate is: " + candidate.getCandidateName());
+
+    } else {
+      System.out.println("Not a valid rank");
+    }
+   }
+
 }
